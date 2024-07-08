@@ -1,9 +1,11 @@
 const express = require("express");
 const { PrismaClient } = require("@prisma/client");
+const cors = require("cors");
 
 const prisma = new PrismaClient();
 const app = express();
 app.use(express.json());
+app.use(cors());
 const port = 3002;
 
 // Creating User
@@ -28,9 +30,10 @@ app.get("/user/:name", async (req, res) => {
 
 app.get("/user/task/:id", async (req, res) => {
   const tasks = await prisma.task.findMany({
-    where: { userId: req.params.id },
+    where: { userId: req.params.id, isCompleted: false },
+    orderBy: { created_at: "desc" },
   });
-  console.log(tasks);
+  // console.log(tasks);
   res.json(tasks);
 });
 
@@ -57,6 +60,7 @@ app.get("/task/:id", async (req, res) => {
 
 app.put("/task/:id", async (req, res) => {
   const data = req.body;
+
   const task = await prisma.task.update({
     where: { id: req.params.id },
     data: { ...data },
