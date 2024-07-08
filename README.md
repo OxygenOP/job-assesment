@@ -3,7 +3,7 @@
 ### Requirements:
 Docker
 NodeJS
-
+...
 ### Steps to run the Backend
 Step 1: run the Postgres instance located in backend folder (cd into backend folder) using docker compose
 
