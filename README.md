@@ -1,9 +1,9 @@
 # tasks app
  
 ### Requirements:
-Docker
-NodeJS
-...
+  Docker
+  NodeJS
+
 ### Steps to run the Backend
 Step 1: run the Postgres instance located in backend folder (cd into backend folder) using docker compose
 
@@ -40,9 +40,9 @@ Step 4: Run
 
 ### Tech Stack:
 
-Nextjs
-Docker
-ExpressJs
-Prisma
-Postgres
+  Nextjs
+  Docker
+  ExpressJs
+  Prisma
+  Postgres
 
