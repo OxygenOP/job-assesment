@@ -2,7 +2,10 @@
  
 ### Requirements:
   Docker
+  
   NodeJS
+
+___  
 
 ### Steps to run the Backend
 Step 1: run the Postgres instance located in backend folder (cd into backend folder) using docker compose
@@ -23,8 +26,10 @@ Step 4: Run the server (it's using nodemon)
 
 ```npm run dev```
 
+___ 
 
 ### Steps to run the Frontend
+
 Step 1: cd into the frontend folder and install the dependencies
 
 ```npm i ```
@@ -36,13 +41,17 @@ Step 4: Run
 ```npm run dev```
 
 
-
+___  
 
 ### Tech Stack:
 
   Nextjs
+  
   Docker
+  
   ExpressJs
+  
   Prisma
+ 
   Postgres
 
