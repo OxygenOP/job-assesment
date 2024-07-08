@@ -1,6 +1,6 @@
 # tasks app
  
-###Requirements:
+### Requirements:
 Docker
 NodeJS
 
@@ -38,7 +38,7 @@ Step 4: Run
 
 
 
-##Tech Stack:
+### Tech Stack:
 
 Nextjs
 Docker
