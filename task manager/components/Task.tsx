@@ -94,7 +94,7 @@ export default function Task({
       )}
       <div className="flex flex-row gap-x-2">
         <button
-          className="bg-[#D9D9D9] px-2 p-1"
+          className="bg-[#D9D9D9] h-fit px-2 p-1"
           onClick={completed}
           type="button"
         >
