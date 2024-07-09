@@ -6,24 +6,31 @@ export default function AddTask({ userId }: { userId: string }) {
   const [isVisible, setIsVisible] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
   function close() {
     setTitle("");
     setDescription("");
+    setErrorMessage("");
+
     setIsVisible(false);
   }
 
   function createTask() {
-    fetch(process.env.NEXT_PUBLIC_api + "task/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title: title, body: description, userId }),
-    }).then((res) => {
-      setIsVisible(false);
-      router.refresh();
-    });
+    if (title != "") {
+      fetch(process.env.NEXT_PUBLIC_api + "task/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title: title, body: description, userId }),
+      }).then((res) => {
+        close();
+        router.refresh();
+      });
+    } else {
+      setErrorMessage("Title is required");
+    }
   }
 
   return (
@@ -43,7 +50,7 @@ export default function AddTask({ userId }: { userId: string }) {
             onClick={close}
           ></div>
 
-          <div className="relative z-10 bg-white rounded-md min-w-[300px] min-h-[400px] lg:min-w-[55%] lg:min-h-[600px] p-4 flex flex-col">
+          <div className="relative z-10 bg-white rounded-md min-w-[300px] min-h-[400px] lg:min-w-[55%]  p-4 flex flex-col">
             <h1 className="text-[24px]">Add Task</h1>
             <div>
               <div className="flex flex-col h-full min-w-[300px] gap-y-2 mt-10">
@@ -73,11 +80,16 @@ export default function AddTask({ userId }: { userId: string }) {
                 />
                 <button
                   className="w-full border border-black p-2 bg-black text-white rounded hover:bg-white hover:text-black transition-colors"
-                  type="button"
+                  type="submit"
                   onClick={createTask}
                 >
                   Create Task
                 </button>{" "}
+                {errorMessage != "" && (
+                  <div className="w-full bg-red-300 text-white p-2 py-1 text-[14px] rounded ">
+                    {errorMessage}
+                  </div>
+                )}
               </div>
             </div>
           </div>
