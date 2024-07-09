@@ -1,7 +1,6 @@
 import React from "react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { json } from "stream/consumers";
 
 async function page() {
   const user = cookies().get("user");
@@ -9,9 +8,8 @@ async function page() {
     redirect("/");
   }
 
-  async function test(data: FormData) {
+  async function CreateAccount(data: FormData) {
     "use server";
-    console.log(data.get("name"));
     let user = await fetch(process.env.api + "user/" + data.get("name"), {
       method: "GET",
       cache: "no-cache",
@@ -40,7 +38,10 @@ async function page() {
 
   return (
     <div className="flex min-h-screen flex-col items-center  p-24">
-      <form action={test} className="min-w-[300px] flex flex-col gap-y-4">
+      <form
+        action={CreateAccount}
+        className="min-w-[300px] flex flex-col gap-y-4"
+      >
         <label htmlFor="name">
           Enter your name to login or create an account
         </label>
